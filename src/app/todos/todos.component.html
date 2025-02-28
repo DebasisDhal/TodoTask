@@ -1,0 +1,77 @@
+
+
+<section class="vh-100 gradient-custom d-flex align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8">
+        <div class="card">
+          <div class="card-body p-5">
+            <form [formGroup]="todoForm" class="d-flex justify-content-center mb-4">
+              <input type="text" id="taskInput" formControlName="text" class="form-control flex-fill me-2" placeholder="Enter todo...">
+              <button type="submit" class="btn btn-info" (click)="addTodo()">Add</button>
+            </form>
+
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs mb-4 pb-2" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#allTasks" role="tab">All</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#activeTasks" role="tab">Active</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#completedTasks" role="tab">Completed</a>
+              </li>
+            </ul>
+
+            <!-- Tabs Content -->
+
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th><strong>Index</strong></th>
+                        <th><strong>Task Name</strong></th>
+                        <th><strong>Due Date</strong></th>
+                        <th><strong>Status</strong></th>
+                        <th class="text-center"><strong>Tags</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let todo of todos">
+                        <td style="text-align: center;">{{ todo.id }}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="checkbox">
+                                </div>
+                                <div class="col-6">
+                                    {{ todo.text }}
+                                </div>
+                                <div class="col-4 text-end ">
+                                    <i class="fa fa-close text-secondary px-3 text-danger "></i>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ todo.createdAt | date:'short' }}</td>
+                        <td [style.color]="todo.completed ? 'red' : 'green'" [style.font-weight]="'bold'">
+                            {{ todo.completed ? 'Completed' : 'Active' }}
+                          </td>
+                                                   
+                        <td class="text-center">
+                            <button class="btn btn-warning btn-sm rounded-btn">Edit</button>
+                            <button class="btn btn-success btn-sm rounded-btn" (click)="toggleComplete(todo)">Mark as {{ todo.completed ? 'Incomplete' : 'Completed' }}</button>
+                            <button class="btn btn-danger btn-sm rounded-btn" (click)="deleteTodo(todo.id)">Delete</button>
+                        </td>
+                 
+                </tbody>
+            </table>
+        <!-- Tabs Content End -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

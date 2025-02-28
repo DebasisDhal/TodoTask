@@ -1,0 +1,5 @@
+.gradient-custom {
+    background: linear-gradient(135deg, #00ff94, #720059, #ff0000, #0029ff, #8fff00);
+    background-blend-mode: screen, overlay, difference, normal;
+    min-height: 100vh;
+  }
